@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: billing-service-demo
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/billing
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+
+rabbitmq:
+  tls:
+    client_file: file:/home/cpt-nr/IdeaProjects/billing-service-demo/certs/client-keystore.p12
+    client_secret: ${SERVER_PEM_SECRET}
+    keystore_file: file:/home/cpt-nr/IdeaProjects/billing-service-demo/certs/truststore.jks
+    keystore_secret: ${RABBIT_KEYSTORE_SECRET}
+    protocol: TLSv1.2
+  connection:
+    host: localhost
+    port: 5671
+
+billing:
+  processing:
+    timeout: 180
+    batch-limit-size: 50
+    batch-delay: 1s
